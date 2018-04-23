@@ -6,9 +6,15 @@ use Slim\Http\Response;
 // Routes
 
 $app->get('/', function (Request $request, Response $response) {
+    /**
+     * @var GuzzleHttp\Client $client
+     */
+    $client = $this->client;
 
+    $response = $client->get("/articles");
+    $json = (string)$response->getBody();
 
-    $articles = [];
+    $articles = json_decode($json, true);
 
     // Render index view
     return $this->renderer->render($response, 'index.phtml', ["articles" => $articles]);

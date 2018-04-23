@@ -17,3 +17,14 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
 };
+
+$container['client'] = function($c) {
+    $settings = $c->get('settings')['service'];
+    $uri = "http://" . $settings["host"] . ":" . $settings["port"] . "/";
+
+    $client = new GuzzleHttp\Client([
+        'base_uri' => $uri
+    ]);
+
+    return $client;
+};
