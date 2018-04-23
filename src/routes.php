@@ -21,9 +21,17 @@ $app->get('/', function (Request $request, Response $response) {
 
 
 $app->get('/{id}', function (Request $request, Response $response, array $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+    $id = filter_var($args["id"], FILTER_SANITIZE_NUMBER_INT);
+
+    /**
+     * @var GuzzleHttp\Client $client
+     */
+    $client = $this->client;
+
+    $articlesResponse = $client->request("GET", "/articles/" . $id);
+    $json = (string)$articlesResponse->getBody();
+    $article = json_decode($json, true);
 
     // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
+    return $this->renderer->render($response, 'index.phtml', ["articles" => [$article]]);
 });
