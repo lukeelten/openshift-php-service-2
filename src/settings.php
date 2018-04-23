@@ -5,7 +5,7 @@ $serviceName = getenv("ARTICLE_SERVICE");
 $envbase = str_replace("-", "_", strtoupper($serviceName));
 
 $portEnv = $envbase . "_SERVICE_PORT_WEB";
-$hostEnv = $envbase . "SERVICE_HOST";
+$hostEnv = $envbase . "_SERVICE_HOST";
 
 
 return [
