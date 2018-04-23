@@ -20,6 +20,7 @@
             </h1>
         </div>
     </div>
+    <br>
 
     <?php if (isset($articles) && !empty($articles)):
         foreach ($articles as $article): ?>
@@ -27,7 +28,9 @@
                 <div class="col-xl-8 col-lg-10 col-12">
                     <div class="card text-center">
                         <div class="card-header">
-                            <?= htmlspecialchars($article["title"]) ?>
+                            <h3 class="card-title">
+                                <?= htmlspecialchars($article["title"]) ?>
+                            </h3>
                         </div>
                         <div class="card-body">
                             <p class="card-text">
@@ -43,6 +46,7 @@
                     </div>
                 </div>
             </div>
+        <br>
     <?php
         endforeach;
     else: ?>

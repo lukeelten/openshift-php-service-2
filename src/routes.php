@@ -11,9 +11,8 @@ $app->get('/', function (Request $request, Response $response) {
      */
     $client = $this->client;
 
-    $response = $client->get("/articles");
-    $json = (string)$response->getBody();
-
+    $articlesResponse = $client->request("GET", "/articles");
+    $json = (string)$articlesResponse->getBody();
     $articles = json_decode($json, true);
 
     // Render index view
